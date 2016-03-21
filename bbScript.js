@@ -41,7 +41,7 @@ function sendToRubyApp(){
                   'email': email,
                   "Authorization": requestHeadersAuth,
                   "Accept": accept,
-                  "X-Salemove-Visit-Session-Id": requestHeadersSession
+                  "Session": requestHeadersSession
                 }
 
     $.ajax({
