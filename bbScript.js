@@ -34,8 +34,15 @@ function addListener(){
   });
 }
 
+
+function checkEmail(string){
+ var re = /\S+@\S+[\.][0-9a-z]+/
+ return re.test(string)
+}
+
 function sendToRubyApp(){
-  if (email !== "" || null || undefined){
+  result = checkEmail(email)
+  if (result === true){
     var accept = 'application/vnd.salemove.v1+json'
     var body =  {
                   'email': email,
