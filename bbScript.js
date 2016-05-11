@@ -46,15 +46,15 @@ function sendToRubyApp(){
     var accept = 'application/vnd.salemove.v1+json'
     var body =  {
                   'email': email,
-                  "Authorization": requestHeadersAuth,
-                  "Accept": accept,
-                  "Session": requestHeadersSession
+                  "authorization": requestHeadersAuth,
+                  "accept": accept,
+                  "session": requestHeadersSession
                 }
 
     $.ajax({
       type: "GET",
       data: body,
-      url: "http://localhost:3000/tickets",
+      url: "https://baublebar-server.herokuapp.com/tickets",
       contentType: "application/json"
     })
   }
