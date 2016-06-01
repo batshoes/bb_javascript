@@ -28,8 +28,8 @@ sm.getApi({version:'v1'}).then(
 );
 
 function addListener(){
-  $(document.body).on('change','.sm-user-email',function(){
-    window.email = $('.sm-user-email').val();
+  $('sm-user-email').on('change',function(){
+    window.email = $(this).value
     sendToRubyApp();
   });
 }
@@ -51,12 +51,16 @@ function sendToRubyApp(){
                   "session": requestHeadersSession
                 }
 
-    $.ajax({
-      type: "GET",
-      data: body,
-      url: "https://baublebar-server.herokuapp.com/tickets",
-      contentType: "application/json"
-    })
+    // $.ajax({
+    //   type: "GET",
+    //   data: body,
+    //   url: "https://baublebar-server.herokuapp.com/tickets",
+    //   contentType: "application/json"
+    // })
+
+    var xhr = new XMLHttpRequest()
+    xhr.open("GET", "https://baublebar-server.herokuapp.com/tickets");
+    xhr.send(body)
   }
 }
 
@@ -67,7 +71,9 @@ function currentVisitorRequest(api){
 
   window.requestHeadersAuth = salemoveApi.getRequestHeaders()['Authorization']
   window.requestHeadersSession = salemoveApi.getRequestHeaders()['X-Salemove-Visit-Session-Id']
-
+  console.log(requestHeadersSession)
+  console.log(requestHeadersAuth)
+  
   request.setRequestHeader('Authorization',
                             requestHeadersAuth)
   request.setRequestHeader('Accept',
